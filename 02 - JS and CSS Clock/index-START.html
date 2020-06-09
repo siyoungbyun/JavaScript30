@@ -65,7 +65,7 @@
       transform-origin: 100%;
       transform: rotate(90deg);
       transition: all 0.05s;
-      transition-timing-function: ease-in-out;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 
     }
 
@@ -81,16 +81,33 @@
       // Seconds
       const seconds = now.getSeconds();
       const secondsDegrees = ((seconds / 60) * 360) + 90;
+      if (secondsDegrees === 451) {
+        secondHand.style.transition = "none";
+      }
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      if (secondsDegrees === 451) {
+        secondHand.style.removeProperty(transition);
+      }
       // Minutes
       const minutes = now.getMinutes();
       const minutesDegrees = ((minutes / 60) * 360) + 90;
+      if (minutesDegrees === 451) {
+        minuteHand.style.transition = "none";
+      }
       minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      if (minutesDegrees === 451) {
+        minuteHand.style.removeProperty(transition);
+      }
       // hours
       const hours = now.getHours();
       const hoursDegrees = ((hours / 12) * 360) + 90;
+      if (hoursDegrees === 451) {
+        hourHand.style.transition = "none";
+      }
       hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-      console.log(hours);
+      if (hoursDegrees === 451) {
+        hourHand.style.removeProperty(transition);
+      }
     }
     setInterval(setDate, 1000);
   </script>
